@@ -1,0 +1,29 @@
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#itemsListView ul {
+    list-style: none;
+    padding: 0;
+}
+
+#itemsListView ul li {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #F6F6F6;
+    margin-bottom: 10px;
+}
+#itemsListView ul li span{
+    display: block;
+}
+
+span.title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+span.status {
+    color: #999;
+}
