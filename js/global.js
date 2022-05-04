@@ -22,17 +22,32 @@ formItem.addEventListener('submit', (event) => {
     // limpa o input
     inputItem.value = ""
 
-    // cria um novo elemento do tipo <span>
-    const spanStatus = document.createElement('SPAN')
-    // adiciona a class title ao span criado
-    spanStatus.className = "status"
-    // setar o valor inicial como pending
-    spanStatus.innerHTML = "pending"
+    // Cria um botão para finalizar/reabrir tarefa
+    const newBtn = document.createElement('BUTTON')
+    newBtn.innerHTML = "Finalizar"
+    newBtn.className = "btn-toggle-status"
 
     // criando um novo elemento do tipo <li>
     const newLi = document.createElement('LI')
     newLi.appendChild(spanTitle)
-    newLi.appendChild(spanStatus)
+    newLi.appendChild(newBtn)
     lista.appendChild(newLi)
-
 })
+
+lista.addEventListener("click", (e) => {
+    if(e.target.tagName == "BUTTON" && e.target.classList.contains('btn-toggle-status')) {
+        toggleCompleted(e.target.parentNode)
+    }
+})
+
+const toggleCompleted = (elemento) => {
+    if(elemento.classList.contains("completed")){
+        // remove
+        elemento.className = ""
+        elemento.children[1].innerHTML = "Finalizar"
+    } else {
+        // adiciona
+        elemento.className = "completed"
+        elemento.children[1].innerHTML = "Reabrir"
+    }
+}
