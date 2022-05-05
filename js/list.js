@@ -4,23 +4,17 @@ const inputItem = document.querySelector('#addItem form input[name="newItem"]')
 // Instancia a ul que lista todos os itens criados
 const lista = document.querySelector('#itemsListView ul')
 
-// Instancia o formulário
-const formItem = document.querySelector('#addItem form')
-
 // Adiciona um listener ao evento submit do formulário
-formItem.addEventListener('submit', (event) => {
-    // previne o comportamento padrão (recarregar a página)
-    event.preventDefault()
+function addItem(item) {
     // pega o valor do input e guarda na variável
-    const title = inputItem.value
+    console.log(item)
     // cria um novo elemento do tipo <span>
     const spanTitle = document.createElement('SPAN')
     // adiciona a class title ao span criado
     spanTitle.className = "title"
     // adiciona o valor do novo item ao title
-    spanTitle.innerHTML = title
+    spanTitle.innerHTML = item.title
     // limpa o input
-    inputItem.value = ""
 
     // Cria um botão para finalizar/reabrir tarefa
     const newBtn = document.createElement('BUTTON')
@@ -32,6 +26,12 @@ formItem.addEventListener('submit', (event) => {
     newLi.appendChild(spanTitle)
     newLi.appendChild(newBtn)
     lista.appendChild(newLi)
+}
+
+fetch('https://jsonplaceholder.typicode.com/todos/')
+.then(response => response.json())
+.then(json => {
+    json.map(item => addItem(item))
 })
 
 lista.addEventListener("click", (e) => {
